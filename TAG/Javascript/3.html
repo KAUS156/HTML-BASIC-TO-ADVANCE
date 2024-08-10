@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browser Information</title>
+</head>
+<body>
+<h2>Browser Information</h2>
+<ul id="browserInfo"></ul>
+
+<script>
+// Function to get browser information
+function getBrowserInfo() {
+    var browserInfoList = document.getElementById("browserInfo");
+
+    // Check if the browser supports navigator object
+    if (navigator) {
+        // Get browser name and version
+        var browserName = navigator.appName;
+        var browserVersion = navigator.appVersion;
+
+        // Display browser name and version
+        var browserItem = document.createElement("li");
+        browserItem.textContent = "Browser Name: " + browserName;
+        browserInfoList.appendChild(browserItem);
+
+        var versionItem = document.createElement("li");
+        versionItem.textContent = "Browser Version: " + browserVersion;
+        browserInfoList.appendChild(versionItem);
+        
+        // Check if browser supports geolocation
+        if ("geolocation" in navigator) {
+            var geolocationItem = document.createElement("li");
+            geolocationItem.textContent = "Geolocation is supported";
+            browserInfoList.appendChild(geolocationItem);
+        } else {
+            var geolocationItem = document.createElement("li");
+            geolocationItem.textContent = "Geolocation is not supported";
+            browserInfoList.appendChild(geolocationItem);
+        }
+
+        // Check if browser supports cookies
+        if (navigator.cookieEnabled) {
+            var cookiesItem = document.createElement("li");
+            cookiesItem.textContent = "Cookies are enabled";
+            browserInfoList.appendChild(cookiesItem);
+        } else {
+            var cookiesItem = document.createElement("li");
+            cookiesItem.textContent = "Cookies are not enabled";
+            browserInfoList.appendChild(cookiesItem);
+        }
+    } else {
+        // Display error message if navigator object is not supported
+        browserInfoList.innerHTML = "<li>Error: Browser information not available</li>";
+    }
+}
+
+// Call the function to display browser information when the page loads
+window.onload = getBrowserInfo;
+</script>
+
+</body>
+</html>

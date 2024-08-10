@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Record Form</title>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+    <center>
+<h2>Student Record Form</h2>
+<form id="studentForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <span id="nameError" class="error"></span><br>
+    
+    <label for="roll">Roll Number:</label><br>
+    <input type="text" id="roll" name="roll" required><br>
+    <span id="rollError" class="error"></span><br>
+    
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age" required><br>
+    <span id="ageError" class="error"></span><br>
+    
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+function validateForm() {
+    var name = document.getElementById("name").value;
+    var roll = document.getElementById("roll").value;
+    var age = document.getElementById("age").value;
+    var isValid = true;
+    
+    // Validation for Name
+    if (name == "") {
+        document.getElementById("nameError").innerText = "Name is required";
+        isValid = false;
+    } else {
+        document.getElementById("nameError").innerText = "";
+    }
+    
+    // Validation for Roll Number
+    if (roll == "") {
+        document.getElementById("rollError").innerText = "Roll Number is required";
+        isValid = false;
+    } else if (isNaN(roll)) {
+        document.getElementById("rollError").innerText = "Roll Number must be a number";
+        isValid = false;
+    } else {
+        document.getElementById("rollError").innerText = "";
+    }
+    
+    // Validation for Age
+    if (age == "") {
+        document.getElementById("ageError").innerText = "Age is required";
+        isValid = false;
+    } else if (isNaN(age)) {
+        document.getElementById("ageError").innerText = "Age must be a number";
+        isValid = false;
+    } else if (age < 0) {
+        document.getElementById("ageError").innerText = "Age cannot be negative";
+        isValid = false;
+    } else {
+        document.getElementById("ageError").innerText = "";
+    }
+    
+    return isValid;
+}
+</script>
+</center>
+</body>
+</html>
